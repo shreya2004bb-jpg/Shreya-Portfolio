@@ -1,0 +1,146 @@
+/* =========================
+   GLOBAL FIX
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f172a; /* dark black-blue */
+    color: #e5e7eb;
+}
+
+/* =========================
+   GRADIENT TEXT
+========================= */
+.gradient-text {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* =========================
+   NAV LINK
+========================= */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* =========================
+   PROJECT CARD
+========================= */
+.project-card {
+    transition: 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================
+   REMOVE UNWANTED BOX ISSUE
+========================= */
+
+/* IMPORTANT FIX - remove pseudo box */
+img::before,
+img::after {
+    display: none !important;
+}
+
+/* remove any default border/shadow */
+img {
+    display: block;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none;
+}
+
+/* =========================
+   GLOW EFFECT (SAFE)
+========================= */
+.glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: rgba(139, 92, 246, 0.2);
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* =========================
+   SKILLS CIRCLE FIX (NO BOX ISSUE)
+========================= */
+svg circle {
+    stroke-linecap: round;
+}
+
+/* =========================
+   TIMELINE FIX
+========================= */
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, #3b82f6, #8b5cf6, transparent);
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+}
+.skill-circle {
+    stroke-dasharray: 201;
+    stroke-dashoffset: 201;
+    animation: fillAnim 1.6s ease-out forwards;
+}
+
+@keyframes fillAnim {
+    to {
+        stroke-dashoffset: var(--offset);
+    }
+}
+
+.skill-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    transition: 0.3s ease;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
